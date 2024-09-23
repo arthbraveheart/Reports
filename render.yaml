@@ -1,1 +1,13 @@
-services:  web:    type: web    env: python3    buildCommand: pip install -r requirements.txt    startCommand: python app.py    disk: 1Gi  # You can add additional services if needed, like databases or other background processes.  # db:  #   type: postgresql  #   version: 13  #   disk: 5Giroutes:  - type: web    name: app    source: /    destination: web
+services:
+  web:
+    type: web
+    env: python3
+    buildCommand: pip install -r requirements.txt
+    startCommand: python app.py
+    disk: 1Gi
+
+routes:
+  - type: web
+    name: app
+    source: /
+    destination: web
