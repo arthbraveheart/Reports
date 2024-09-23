@@ -1,13 +1,16 @@
 services:
-  web:
-    type: web
+  - type: web
+    name: dash-app
     env: python3
+    plan: free   # Adjust this if you're using a different plan (free, standard, etc.)
     buildCommand: pip install -r requirements.txt
-    startCommand: python app.py
+    startCommand: gunicorn app:server  # Uses Gunicorn for production deployment of Dash
     disk: 1Gi
+    numInstances: 1  # Number of instances you want to run
 
 routes:
   - type: web
-    name: app
+    name: dash-route
     source: /
-    destination: web
+    destination: dash-app
+
